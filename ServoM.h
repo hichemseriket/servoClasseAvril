@@ -13,13 +13,13 @@
 class ServoM : public Servo
 {
   private:
-    int m_pin;
-    int m_state;
-    int m_angleMin;
-    int m_angleMax;
-    int m_move;
+    int m_pin{};
+    int m_state{};
+    int m_angleMin{};
+    int m_angleMax{};
+    int m_move{};
     int m_potpin = 0;  // analog pin used to connect the potentiometer
-    int m_val;    // variable to read the value from the analog pin
+    int m_val{};    // variable to read the value from the analog pin
     Servo hichem;
     
   public:

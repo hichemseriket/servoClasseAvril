@@ -61,3 +61,5 @@ bool ServoM::estAllume() const
 void ServoM::afficherEtat() const
 {
 }
+
+ServoM::ServoM() = default;
