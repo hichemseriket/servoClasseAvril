@@ -15,12 +15,12 @@ ServoM::ServoM(int pin, int angleMin, int angleMax) : m_pin(pin), m_state(90), m
   m_angleMax = angleMax;
 }
 
-void ServoM::analog( int potpin){
-  val = analogRead(potpin);
-  val = map(val, 0, 1023, 40, 160);
-//  ServoM.WRITE_Servo_Angle(val);
-//  Servo.write(val);
-//  Serial.println(val);
+void ServoM::analog( int m_potpin){
+  m_val = analogRead(m_potpin);
+  m_val = map(m_val, 0, 1023, 40, 160);
+//  ServoM.WRITE_Servo_Angle(m_val);
+//  Servo.write(m_val);
+//  Serial.println(m_val);
 //  delay(15);
 }
 void ServoM::getAngleMax(int angle)

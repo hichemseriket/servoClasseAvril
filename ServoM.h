@@ -31,9 +31,9 @@ class ServoM : public Servo
     //                    this.servoh.attach(pin)
     //        };
     void analog(int potpin);
-    static void getAngleMax(int angle);
-    static void getAngleMin(int angle);
-    static void WRITE_Servo_Angle(int angle);
+    void getAngleMax(int angle);
+    void getAngleMin(int angle);
+    void WRITE_Servo_Angle(int angle);
     int READ_Servo_Angle() const;
     bool estAllume() const;
     void afficherEtat() const;
