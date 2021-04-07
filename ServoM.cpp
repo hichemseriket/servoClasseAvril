@@ -8,6 +8,7 @@
 
 ServoM::ServoM(int pin, int angleMin, int angleMax) : m_pin(pin), m_state(90), m_angleMin(angleMin), m_angleMax(angleMax), m_move(0), m_potpin(0), m_val(50)
 {
+  
   //test led si elle salume 
   pinMode(pin, OUTPUT);
   m_pin = pin;
@@ -25,22 +26,19 @@ void ServoM::analog( int m_potpin){
 }
 void ServoM::getAngleMax(int angle)
 {
-  Servo ServoM;
-  ServoM.read();
+  hichem.read();
 }
 
 void ServoM::getAngleMin(int angle)
 {
-  Servo ServoM;
-  ServoM.read();
+  hichem.read();
   //  read(_angleMin);
   //  return angle;
 }
 
 void ServoM::WRITE_Servo_Angle(int angle)
 {
-  Servo ServoM;
-  ServoM.write(angle);
+  hichem.write(angle);
 }
 
 int ServoM::READ_Servo_Angle() const
