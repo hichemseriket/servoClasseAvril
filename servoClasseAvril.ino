@@ -3,9 +3,8 @@
 
 // dois je le declaré ici en tant que Servo ?
 //Servo ServoM;
-int m_potpin = 0;
-int m_val;
-ServoM pince(5, 45, 110);
+//ServoM pince(5, 0, 180);
+ServoM pince(5);
 ServoM poignet(6, 20, 160);
 ServoM mains(7, 20, 160);
 ServoM avantBras(8, 20, 160);
@@ -17,20 +16,16 @@ void setup() {
 }
 
 void loop() {
-  m_val = analogRead(m_potpin);
-  m_val = map(m_val, 0, 1023, 40, 160);
-  pince.write(m_val);
-  pince.WRITE_Servo_Angle(m_val);
-  Serial.println(m_val);
-  delay(15);
-  pince.WRITE_Servo_Angle(110);
-  //  pince.WRITE_Servo_Angle(50);
-  pince.write(80);
+
+  pince.WRITE_Servo_Angle(20);
+  delay(300);
+  // pince.WRITE_Servo_Angle(50);
+  /*pince.write(120);
   poignet.READ_Servo_Angle();
   pince.afficherEtat();
   poignet.afficherEtat();
   mains.afficherEtat();
   avantBras.afficherEtat();
-  bras.afficherEtat();
-  base.afficherEtat();
+  bras.afficherEtat();*/
+  pince.afficherEtat();
 }
