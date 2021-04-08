@@ -12,20 +12,38 @@ ServoM bras(9, 20, 160);
 ServoM base(10, 20, 160);
 
 void setup() {
-  Serial.begin(9600);
+    Serial.begin(9600);
+    MyObject.attach(7);
 }
 
 void loop() {
+    /*// lecture du nombre de caractères disponibles dans le buffer
+    int donneesALire = Serial.available();
+    if(donneesALire > 0) // si le buffer n'est pas vide
+    {
+        // Il y a des données, on les lit et on fait du traitement
+    }
+    // on a fini de traiter la réception ou il n'y a rien à lire    pince.WRITE_Servo_Angle(20);
+     */
+    // on lit le premier caractère non traité du buffer
+    char choseLue = Serial.read();
 
-  pince.WRITE_Servo_Angle(20);
-  delay(300);
-  // pince.WRITE_Servo_Angle(50);
-  /*pince.write(120);
-  poignet.READ_Servo_Angle();
-  pince.afficherEtat();
-  poignet.afficherEtat();
-  mains.afficherEtat();
-  avantBras.afficherEtat();
-  bras.afficherEtat();*/
-  pince.afficherEtat();
+    if(choseLue == -1) // si le buffer est vide
+    {
+        // Rien à lire, rien lu
+    }
+    else // le buffer n'est pas vide
+    {
+        // On a lu un caractère
+    }
+    delay(300);
+    // pince.WRITE_Servo_Angle(50);
+    /*pince.write(120);
+    poignet.READ_Servo_Angle();
+    pince.afficherEtat();
+    poignet.afficherEtat();
+    mains.afficherEtat();
+    avantBras.afficherEtat();
+    bras.afficherEtat();*/
+    pince.afficherEtat();
 }

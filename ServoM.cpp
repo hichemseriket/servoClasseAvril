@@ -21,7 +21,14 @@ ServoM::ServoM(int pin) : m_pin(pin), m_state(90), m_angleMin(20), m_angleMax(16
   hichem.attach(pin);
 }
 
+void ServoM::serialEvent() // déclaration de la fonction d'interruption sur la voie série
+{
+    // lit toutes les données (vide le buffer de réception)
+    while(Serial.read() != -1);
 
+    // puis le servo tourne a 90
+    write(hichem, 90);
+}
 void ServoM::getAngleMax(int angle)
 {
   hichem.read();
@@ -37,7 +44,7 @@ void ServoM::getAngleMin(int angle)
 void ServoM::WRITE_Servo_Angle(int angle)
 {
   hichem.write(angle);
-  Serial.println("hichem"+ angle);
+  Serial.println(&"hichem"[ angle]);
 }
 
 int ServoM::READ_Servo_Angle() const

@@ -25,6 +25,7 @@ class ServoM : public Servo
     ServoM();
     ServoM(int pin);
     ServoM(int pin, int angleMin, int angleMax);
+    void serialEvent();
     void getAngleMax(int angle);
     void getAngleMin(int angle);
     void WRITE_Servo_Angle(int angle);
@@ -32,5 +33,9 @@ class ServoM : public Servo
     bool estAllume() const;
     void afficherEtat() const;
 };
+//ServoM oumayma(m_pin, m_state, m_angleMin, m_angleMax, m_move, hichem);
+//ServoM MyObject(m_pin);
+ServoM MyObject(pin);
+
 
 #endif //DRONE_SERVOM_H
