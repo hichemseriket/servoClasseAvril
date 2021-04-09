@@ -10,10 +10,31 @@ ServoM mains(7, 20, 160);
 ServoM avantBras(8, 20, 160);
 ServoM bras(9, 20, 160);
 ServoM base(10, 20, 160);
+// je mets cette variable mais a terme faut reflichir a comment plutt mettre m_state qui evolue et qui stock a tt moment l'etat actuel
+int pos = 0;
 
 void setup() {
     Serial.begin(9600);
    // MyObject.attach(7);
+    while (!Serial);
+    Serial.println("-------------------------");
+    Serial.println("HICHEM is loading....");
+    delay(1000);
+    Serial.println("HICHEM loaded succesfully");
+    Serial.println("-------------------------");
+    Serial.println("calibrating servo...");
+    for(pos = 0; pos <= 180; pos += 1)
+        pince.write(0);
+    delay(1000);
+    pince.write(180);
+    delay(1000);
+    pince.write(90);
+    delay(1000);
+    Serial.println("servo calibrated");
+    Serial.println("-------------------------");
+    Serial.println("Comand input online, write command to perform action");
+    Serial.println("-------------------------");
+
 }
 
 void loop() {
@@ -26,7 +47,7 @@ void loop() {
     // on a fini de traiter la réception ou il n'y a rien à lire    pince.WRITE_Servo_Angle(20);
      */
     // on lit le premier caractère non traité du buffer
-    char choseLue = Serial.read();
+   /* char choseLue = Serial.read();
 
     if(choseLue == -1) // si le buffer est vide
     {
@@ -36,7 +57,8 @@ void loop() {
     {
         // On a lu un caractère
     }
-    delay(300);
+    delay(300);*/
+
     // pince.WRITE_Servo_Angle(50);
     /*pince.write(120);
     poignet.READ_Servo_Angle();
@@ -46,6 +68,36 @@ void loop() {
     avantBras.afficherEtat();
     bras.afficherEtat();*/
     pince.afficherEtat();
-    pince.serialEvent();
+//    pince.serialEvent();
     poignet.afficherEtat();
+
+    for(pos = 0; pos <= 180; pos += 1)
+        if (Serial.available())
+
+
+        {
+            int state = Serial.parseInt();
+
+            if (state < 10)
+
+            {
+                Serial.print(">");
+                Serial.println(state);
+                Serial.println("can not execute command, too low number");
+
+            }
+
+            if (state >= 10 && state < 170)
+            {
+                Serial.print(">");
+                Serial.println(state);
+                Serial.print("turning servo to ");
+                Serial.print(state);
+                Serial.println(" degrees");
+                myservo.write(state);
+
+            }
+
+        }
+
 }

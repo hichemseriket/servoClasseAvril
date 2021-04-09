@@ -33,7 +33,7 @@ class ServoM : public Servo
     bool estAllume() const;
     void afficherEtat() const;
 };
-//ServoM oumayma(m_pin, m_state, m_angleMin, m_angleMax, m_move, hichem);
+//ServoM hichem(m_pin, m_state, m_angleMin, m_angleMax, m_move, hichem);
 //ServoM MyObject(m_pin);
 //ServoM MyObject(m_pin);
 
