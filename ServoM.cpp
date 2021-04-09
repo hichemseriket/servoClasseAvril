@@ -1,36 +1,39 @@
 //
 // Created by serik on 24/02/2021.
 //
-
+#include <Servo.h>
 #include "ServoM.h"
 
 // je doit a chaque fois instancier l'objet dans chaque fonction comment pallier acela stp ?
 
-ServoM::ServoM(int pin, int angleMin, int angleMax) : m_pin(pin), m_state(90), m_angleMin(angleMin), m_angleMax(angleMax), m_move(0)
+/* le constructeur que j'ai commenté pour utlisé uniquement le construct plus bas*/
+ServoM::ServoM(int pin, int angleMin, int angleMax)
+{
+  Servo hichem;
+  m_pin = pin;
+  m_angleMin = angleMin;
+  m_angleMax = angleMax;
+  m_state = 55;
+  hichem.attach(pin);
+  hichem.attach(m_pin);
+
+  m_state = hichem.read();
+}
+
+void ServoM::construct(int pin, int angleMin, int angleMax)
 {
   Servo hichem;
   m_pin = pin;
   m_angleMin = angleMin;
   m_angleMax = angleMax;
   hichem.attach(pin);
+  m_state = 55;
+  m_state = hichem.read();
 }
-ServoM::ServoM(int pin) : m_pin(pin), m_state(90), m_angleMin(20), m_angleMax(160), m_move(0)
-{
-  Servo hichem;
-  m_pin = pin;
-  hichem.attach(pin);
-}
+
 
 void ServoM::serialEvent() // déclaration de la fonction d'interruption sur la voie série
 {
-  /*
-    // lit toutes les données (vide le buffer de réception)
-    while(Serial.read() != -1);
-
-    Serial.println("doonnées recu");
-    // puis le servo tourne a 90
-    //    write(hichem, 90);
-  */
   int donneesALire = Serial.available();
   if (donneesALire > 0) // si le buffer n'est pas vide
   {
@@ -46,7 +49,7 @@ void ServoM::getAngleMax(int angle)
 
 void ServoM::getAngleMin(int angle)
 {
-  hichem.read( );
+  hichem.read();
   //Serial.println("ceci est l'angle lu :  " + angle);
 
 }
@@ -54,7 +57,8 @@ void ServoM::getAngleMin(int angle)
 void ServoM::WRITE_Servo_Angle(int angle)
 {
   hichem.write(angle);
-  Serial.println((String)"hichem :" + angle);
+  Serial.println((String)"L'angle lu est qui doit etre ecrit est :" + hichem.read());
+
 }
 
 int ServoM::READ_Servo_Angle() const

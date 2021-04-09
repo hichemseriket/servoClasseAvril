@@ -21,7 +21,7 @@ class ServoM : public Servo
     Servo hichem; 
     
   public:
-
+    void construct(int pin, int angleMin, int angleMax);
     ServoM();
     ServoM(int pin);
     ServoM(int pin, int angleMin, int angleMax);
