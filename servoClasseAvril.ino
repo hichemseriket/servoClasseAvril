@@ -14,15 +14,17 @@ ServoM base(10, 20, 160);
 int pos = 0;
 
 void setup() {
+    pince.afficherEtat();
+    poignet.afficherEtat();
     Serial.begin(9600);
    // MyObject.attach(7);
     while (!Serial);
     Serial.println("-------------------------");
     Serial.println("HICHEM is loading....");
     delay(1000);
-    Serial.println("HICHEM loaded succesfully");
+    Serial.println("HICHEM loaded succesfully (ca fait style hein ?)");
     Serial.println("-------------------------");
-    Serial.println("calibrating servo...");
+    Serial.println("calibration du servo...(bababa la nasa tremble)");
     for(pos = 0; pos <= 180; pos += 1)
         pince.write(0);
     delay(1000);
@@ -30,9 +32,9 @@ void setup() {
     delay(1000);
     pince.write(90);
     delay(1000);
-    Serial.println("servo calibrated");
+    Serial.println("servo calibré");
     Serial.println("-------------------------");
-    Serial.println("Comand input online, write command to perform action");
+    Serial.println("écrivez la commande à excuté/donnez l'angle ");
     Serial.println("-------------------------");
 
 }
@@ -67,9 +69,7 @@ void loop() {
     mains.afficherEtat();
     avantBras.afficherEtat();
     bras.afficherEtat();*/
-    pince.afficherEtat();
 //    pince.serialEvent();
-    poignet.afficherEtat();
 
     for(pos = 0; pos <= 180; pos += 1)
         if (Serial.available())
@@ -91,10 +91,10 @@ void loop() {
             {
                 Serial.print(">");
                 Serial.println(state);
-                Serial.print("turning servo to ");
+                Serial.print("servo tourne vers : ");
                 Serial.print(state);
                 Serial.println(" degrees");
-                myservo.write(state);
+                pince.write(state);
 
             }
 
