@@ -1,10 +1,10 @@
-//#include <Servo.h>
 #include "ServoM.h"
 
 // dois je le declaré ici en tant que Servo ?
 //Servo ServoM;
-//ServoM pince(5, 0, 180);
-ServoM pince(5);
+ServoM pince(5, 0, 180);
+// j'ai ici rajouté un constructeur qui prends un seul argume,nt le pin our comprendre le probleme de la valeur 90 qui s'affichait avant et que je pensais du au min /max
+//ServoM pince(5);
 ServoM poignet(6, 20, 160);
 ServoM mains(7, 20, 160);
 ServoM avantBras(8, 20, 160);
@@ -13,7 +13,7 @@ ServoM base(10, 20, 160);
 
 void setup() {
     Serial.begin(9600);
-    MyObject.attach(7);
+   // MyObject.attach(7);
 }
 
 void loop() {
@@ -46,4 +46,6 @@ void loop() {
     avantBras.afficherEtat();
     bras.afficherEtat();*/
     pince.afficherEtat();
+    pince.serialEvent();
+    poignet.afficherEtat();
 }

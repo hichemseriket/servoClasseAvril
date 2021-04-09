@@ -23,11 +23,21 @@ ServoM::ServoM(int pin) : m_pin(pin), m_state(90), m_angleMin(20), m_angleMax(16
 
 void ServoM::serialEvent() // déclaration de la fonction d'interruption sur la voie série
 {
+  /*
     // lit toutes les données (vide le buffer de réception)
     while(Serial.read() != -1);
 
+    Serial.println("doonnées recu");
     // puis le servo tourne a 90
-    write(hichem, 90);
+    //    write(hichem, 90);
+  */
+  int donneesALire = Serial.available();
+  if (donneesALire > 0) // si le buffer n'est pas vide
+  {
+    // Il y a des données, on les lit et on fait du traitement
+    Serial.println(donneesALire);
+  }
+
 }
 void ServoM::getAngleMax(int angle)
 {
@@ -44,7 +54,7 @@ void ServoM::getAngleMin(int angle)
 void ServoM::WRITE_Servo_Angle(int angle)
 {
   hichem.write(angle);
-  Serial.println(&"hichem"[ angle]);
+  Serial.println((String)"hichem :" + angle);
 }
 
 int ServoM::READ_Servo_Angle() const
@@ -66,9 +76,11 @@ bool ServoM::estAllume() const
 
 void ServoM::afficherEtat() const
 {
-  Serial.println(pin);
-  Serial.println("  l'etat actuel est "[ m_state]);
-  Serial.println("   branché sur pin : "[ m_pin]);
+  // Serial.println((String)"le servo branché est  : "+ nom_objet);
+  Serial.println((String)"branché sur pin : " + m_pin);
+  Serial.println((String)"l'angle actuel est de  : " + m_state);
+  Serial.println((String)"l'angle minimale : " + m_angleMin);
+  Serial.println((String)"l'angle maximale : " + m_angleMax);
 }
 
 ServoM::ServoM() = default;

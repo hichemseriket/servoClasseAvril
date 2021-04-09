@@ -35,7 +35,7 @@ class ServoM : public Servo
 };
 //ServoM oumayma(m_pin, m_state, m_angleMin, m_angleMax, m_move, hichem);
 //ServoM MyObject(m_pin);
-ServoM MyObject(pin);
+//ServoM MyObject(m_pin);
 
 
 #endif //DRONE_SERVOM_H
