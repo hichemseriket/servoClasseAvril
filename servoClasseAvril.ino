@@ -103,6 +103,7 @@ void loop() {
           Serial.println(" degrees");
           pince.WRITE_Servo_Angle(state);
           delay(1000);
+          
 
         }
 
