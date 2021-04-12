@@ -38,6 +38,8 @@ void setup() {
   Serial.println("écrivez la commande à excuté/donnez l'angle ");
   Serial.println("-------------------------");
   pince.afficherEtat();
+ // pince.serialEvent();
+ pince.getAngleMax(30);
 
 }
 
